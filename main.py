@@ -20,6 +20,7 @@ from database import (
     complete_call,
 )
 from ai_voice import run_ai_qualification
+from notifications import send_telegram_lead_alert
 
 BASE_DIR = Path(__file__).parent
 
@@ -62,6 +63,8 @@ async def api_create_lead(
         interest=interest,
         source=source,
     )
+    # Fire an instant Telegram alert without blocking the response.
+    asyncio.create_task(send_telegram_lead_alert(lead))
     return JSONResponse({"success": True, "lead": lead})
 
 
