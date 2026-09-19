@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Real Estate Transformation</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Real Estate Transformation</h1>
+      <p>Done-for-you listing ads. AI-powered lead qualification. CRM automation — built for agencies and brokerages.</p>
+    </header>
+
+    <main>
+      <form id="lead-form" class="card">
+        <h2>Get Your Free AI Lead-Flow Audit</h2>
+        <p class="subtext">See how AI can qualify your listing leads while you sleep.</p>
+
+        <label>
+          Full Name
+          <input type="text" name="name" placeholder="Jane Smith" required>
+        </label>
+
+        <div class="row">
+          <label>
+            Phone
+            <input type="tel" name="phone" placeholder="(555) 123-4567" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="jane@agency.com">
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Agency / Brokerage
+            <input type="text" name="agency" placeholder="Smith Realty Group">
+          </label>
+          <label>
+            Your Role
+            <select name="role">
+              <option value="">Select role</option>
+              <option value="broker_owner">Broker / Owner</option>
+              <option value="team_lead">Team Lead</option>
+              <option value="marketing_manager">Marketing Manager</option>
+              <option value="agent">Agent</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Biggest challenge right now?
+          <textarea name="interest" rows="3" placeholder="Leads come in but nobody calls them fast enough..."></textarea>
+        </label>
+
+        <button type="submit" id="submit-btn">Request My Audit</button>
+        <p id="form-message" class="message"></p>
+      </form>
+
+      <div id="qualification-panel" class="card hidden">
+        <h2>AI Voice Qualification Demo</h2>
+        <p>Your info was saved to the CRM. Watch a simulated AI voice call qualify this lead in real time.</p>
+        <button id="start-call-btn">Start AI Call</button>
+        <div id="call-status" class="status">Ready</div>
+        <div id="transcript" class="transcript"></div>
+        <div id="call-result" class="call-result hidden"></div>
+        <a href="/dashboard" class="dashboard-link">View CRM Dashboard →</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>Demo built by Hermes for Jay Ho · AI Real Estate Transformation</p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

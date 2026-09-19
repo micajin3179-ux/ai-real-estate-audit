@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI CRM Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <h1>AI CRM Dashboard</h1>
+      <a href="/" class="back-link">← Back to Lead Form</a>
+    </header>
+
+    <div class="stats-grid" id="stats">
+      <div class="stat-card">
+        <span class="stat-number" id="stat-total">0</span>
+        <span class="stat-label">Total Leads</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-qualified">0</span>
+        <span class="stat-label">Qualified</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-review">0</span>
+        <span class="stat-label">Needs Review</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-new">0</span>
+        <span class="stat-label">New</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Leads</h2>
+      <div class="table-wrap">
+        <table id="leads-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Agency</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Qualified</th>
+              <th>AI Summary</th>
+              <th>Created</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="leads-body">
+            <tr><td colspan="9" class="empty">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="lead-detail" class="card hidden">
+      <h2>Lead Detail</h2>
+      <div id="detail-content"></div>
+    </div>
+  </div>
+
+  <script src="/static/dashboard.js"></script>
+</body>
+</html>
