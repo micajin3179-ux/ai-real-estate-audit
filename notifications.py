@@ -5,10 +5,13 @@ someone submits the lead form. No cron jobs, no polling — just an immediate
 POST to the Telegram Bot API.
 """
 
+import logging
 import os
 from typing import Optional
 
 import httpx
+
+logger = logging.getLogger(__name__)
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
@@ -51,9 +54,11 @@ async def send_telegram_lead_alert(lead: dict) -> Optional[dict]:
     """Send an immediate Telegram notification for a new lead.
 
     Returns the parsed Telegram API response, or None if no bot token/chat id
-    is configured. Errors are swallowed so they don't break the form flow.
+    is configured. Errors are logged but swallowed so they don't break the
+    form flow.
     """
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        logger.warning("Telegram notification skipped: missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID")
         return None
 
     text = format_lead_alert(lead)
@@ -71,7 +76,9 @@ async def send_telegram_lead_alert(lead: dict) -> Optional[dict]:
                 },
             )
             resp.raise_for_status()
-            return resp.json()
-    except Exception:
-        # Don't fail the lead submission if Telegram is down or misconfigured.
+            data = resp.json()
+            logger.info("Telegram lead alert sent for lead %s", lead.get("id"))
+            return data
+    except Exception as exc:
+        logger.exception("Failed to send Telegram lead alert: %s", exc)
         return None
